@@ -38,7 +38,7 @@ export function Button<T extends React.ElementType = "button">({
         containerClassName
       )}
       style={{ borderRadius }}
-      {...otherProps} // Pass all other props dynamically
+      {...(otherProps as React.ComponentPropsWithoutRef<T>)} // 👈 Fix TypeScript error
     >
       <div
         className="absolute inset-0"
@@ -66,6 +66,7 @@ export function Button<T extends React.ElementType = "button">({
     </Component>
   );
 }
+
 
 export const MovingBorder = ({
   children,
