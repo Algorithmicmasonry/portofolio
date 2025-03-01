@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import type { JSX } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -10,10 +11,10 @@ import {
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
-export function Button({
+export function Button<T extends React.ElementType = "button">({
   borderRadius = "1.75rem",
   children,
-  as: Component = "button",
+  as,
   containerClassName,
   borderClassName,
   duration,
@@ -22,23 +23,22 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  as?: any;
+  as?: T;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
-  [key: string]: any;
-}) {
+} & React.ComponentPropsWithoutRef<T>) {
+  const Component = as || "button"; // Default to button
+
   return (
     <Component
       className={cn(
-        "bg-transparent relative text-xl  p-[1px] overflow-hidden md:col-span-2",
+        "bg-transparent relative text-xl p-[1px] overflow-hidden md:col-span-2",
         containerClassName
       )}
-      style={{
-        borderRadius: borderRadius,
-      }}
-      {...otherProps}
+      style={{ borderRadius }}
+      {...otherProps} // Pass all other props dynamically
     >
       <div
         className="absolute inset-0"
@@ -59,9 +59,7 @@ export function Button({
           "relative bg-slate-900/[0.8] border border-slate-800 backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-sm antialiased",
           className
         )}
-        style={{
-          borderRadius: `calc(${borderRadius} * 0.96)`,
-        }}
+        style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}
       >
         {children}
       </div>
@@ -80,11 +78,8 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  [key: string]: any;
-}) => {
+} & React.SVGProps<SVGSVGElement>) => {
   const pathRef = useRef<SVGRectElement | null>(null);
-
-
   const progress = useMotionValue<number>(0);
 
   useAnimationFrame((time) => {
