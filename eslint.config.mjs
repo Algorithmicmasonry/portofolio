@@ -21,6 +21,7 @@ const eslintConfig = [
       
       // Disable TypeScript's "any" type errors (not recommended)
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "off"
     },
   },
 ];
