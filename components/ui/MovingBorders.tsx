@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import type { JSX } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -11,10 +10,10 @@ import {
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
-export function Button<T extends React.ElementType = "button">({
+export function Button({
   borderRadius = "1.75rem",
   children,
-  as,
+  as: Component = "button",
   containerClassName,
   borderClassName,
   duration,
@@ -23,31 +22,33 @@ export function Button<T extends React.ElementType = "button">({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  as?: T;
+  as?: any;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
-} & React.ComponentPropsWithoutRef<T>) {
-  const Component = as || "button"; // Default to button
-
+  [key: string]: any;
+}) {
   return (
     <Component
       className={cn(
-        "bg-transparent relative text-xl p-[1px] overflow-hidden md:col-span-2",
+        // remove h-16 w-40, add  md:col-span-2
+        "bg-transparent relative text-xl p-[1px] overflow-hidden md:col-span-2 md:row-span-1",
         containerClassName
       )}
-      style={{ borderRadius }}
-      {...(otherProps as React.ComponentPropsWithoutRef<T>)} // 👈 Fix TypeScript error
+      style={{
+        borderRadius: borderRadius,
+      }}
+      {...otherProps}
     >
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 rounde-[1.75rem]"
         style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}
       >
         <MovingBorder duration={duration} rx="30%" ry="30%">
           <div
             className={cn(
-              "h-20 w-20 opacity-[0.8] bg-[radial-gradient(var(--sky-500)_40%,transparent_60%)]",
+              "h-20 w-20 opacity-[0.8] bg-[radial-gradient(#CBACF9_40%,transparent_60%)]",
               borderClassName
             )}
           />
@@ -56,17 +57,18 @@ export function Button<T extends React.ElementType = "button">({
 
       <div
         className={cn(
-          "relative bg-slate-900/[0.8] border border-slate-800 backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-sm antialiased",
+          "relative bg-slate-900/[0.] border border-slate-800 backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-sm antialiased",
           className
         )}
-        style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}
+        style={{
+          borderRadius: `calc(${borderRadius} * 0.96)`,
+        }}
       >
         {children}
       </div>
     </Component>
   );
 }
-
 
 export const MovingBorder = ({
   children,
@@ -79,8 +81,10 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-} & React.SVGProps<SVGSVGElement>) => {
+  [key: string]: any;
+}) => {
   const pathRef = useRef<SVGRectElement | null>(null);
+
   const progress = useMotionValue<number>(0);
 
   useAnimationFrame((time) => {
