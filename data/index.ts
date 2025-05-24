@@ -102,6 +102,22 @@ export const projects = [
     iconLists: ["/next.svg", "/tail.svg", "/tg.svg", "/expr2.svg", "/mongodb.svg"],
     link: "https://youtu.be/OLXFVDAdEjI?si=NItFso7aoX30IhhL",
   },
+  {
+    id: 5,
+    title: "Well Journey",
+    des: "Telemedicine platform connecting people in Edo-State to quality healthcare",
+    img: "/welljourney.png",
+    iconLists: ["/next.svg", "/tail.svg", "/tg.svg", "/expr2.svg", "/mongodb.svg"],
+    link: "https://frontend-medical-gamma.vercel.app/",
+  },
+  {
+    id: 5,
+    title: "DurieAutos",
+    des: "Car-dealership Platform for DurieAutos to enable them sell cars online with an admin panel",
+    img: "/carhub.png",
+    iconLists: ["/next.svg", "/tail.svg", "/tg.svg", "/expr2.svg", "/mongodb.svg"],
+    link: "https://car-dealership-one-seven.vercel.app",
+  },
 ];
 
 export const testimonials = [
@@ -205,13 +221,17 @@ export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
+    link: ""
   },
   {
     id: 2,
     img: "/twit.svg",
+    link: ""
   },
+
   {
     id: 3,
     img: "/link.svg",
+    link: "www.linkedin.com/in/emmanuel-oamen-b320a02b2"
   },
 ];
