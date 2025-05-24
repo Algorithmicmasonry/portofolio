@@ -1,9 +1,9 @@
 import React from "react";
 import { FaLocationArrow } from "react-icons/fa6";
-import MagicButton from "./ui/MagicButton"; 
+import MagicButton from "./ui/MagicButton";
 import { socialMedia } from "@/data";
 import Image from "next/image";
-import Link from 'next/Link'
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -36,8 +36,14 @@ const Footer = () => {
               key={profile.id}
               className="w-10 h-10 curoser-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-100 bg-opacity-75 bg-black-200 rounded-lg border border-black-300  "
             >
-              <Link></Link>
-              <Image src={profile.img} alt={profile.img} width={20} height={20} />
+              <Link href={profile.link}>
+                <Image
+                  src={profile.img}
+                  alt={profile.img}
+                  width={20}
+                  height={20}
+                />
+              </Link>
             </div>
           ))}
         </div>
