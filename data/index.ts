@@ -221,12 +221,12 @@ export const socialMedia = [
   {
     id: 1,
     img: "/git.svg",
-    link: ""
+    link: "https://github.com/Emmycodez"
   },
   {
     id: 2,
     img: "/twit.svg",
-    link: ""
+    link: "https://x.com/oamen_emmanuel6"
   },
 
   {
