@@ -106,7 +106,7 @@ export const projects = [
     id: 5,
     title: "Well Journey",
     des: "Telemedicine platform connecting people in Edo-State to quality healthcare",
-    img: "/Welljourney.png",
+    img: "/welljourney.png",
     iconLists: ["/next.svg", "/tail.svg", "/tg.svg", "/expr2.svg", "/mongodb.svg"],
     link: "https://frontend-medical-gamma.vercel.app/",
   },
